@@ -1,111 +1,113 @@
 # Task Planner API
 
-Um simples, mas poderoso, gerenciador de tarefas para ajudar a organizar seu dia e focar no que é importante.
+A simple yet powerful task manager to help you organize your day and focus on what's important.
 
 ## Features
 
-- Crie, leia, atualize e delete tarefas (CRUD).
-- Interface de API RESTful para fácil integração.
-- Persistência de dados com PostgreSQL.
+- Create, read, update, and delete tasks (CRUD).
+- RESTful API interface for easy integration.
+- Data persistence with PostgreSQL.
 
-## Primeiros Passos
+## Getting Started
 
-Siga estas instruções para obter uma cópia do projeto em execução em sua máquina local para desenvolvimento e teste.
+Follow these instructions to get a copy of the project running on your local machine for development and testing purposes.
 
-### Pré-requisitos
+### Prerequisites
 
-- [Go](https://golang.org/doc/install) (versão 1.20 ou superior)
+- [Go](https://golang.org/doc/install) (version 1.20 or higher)
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [Git](https://git-scm.com/downloads)
 
-### Instalação
+### Installation
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/seu-usuario/task-planner.git
+    git clone https://github.com/your-username/task-planner.git
     cd task-planner
     ```
 
-2.  **Instale as dependências:**
+2.  **Install dependencies:**
     ```bash
     go mod tidy
     ```
 
-3.  **Configure as variáveis de ambiente:**
+3.  **Set up environment variables:**
 
-    Crie um arquivo `.env` na raiz do projeto e adicione a senha do seu banco de dados PostgreSQL:
+    Create a `.env` file in the project root and add your PostgreSQL database password:
 
     ```env
-    DB_PASSWORD="sua-senha-secreta"
+    DB_PASSWORD="your-secret-password"
     ```
 
-4.  **Execute a aplicação:**
+4.  **Run the application:**
     ```bash
     go run cmd/tasks/main.go
     ```
 
-    O servidor será iniciado em `http://localhost:8000`.
+    The server will start on `http://localhost:8000`.
 
-## Endpoints da API
+## API Endpoints
 
-A API fornece os seguintes endpoints para gerenciar tarefas:
+The API provides the following endpoints to manage tasks:
 
-| Método | Endpoint | Descrição |
-| :--- | :--- | :--- |
-| `GET` | `/v1/tasks` | Retorna uma lista de todas as tarefas. |
-| `POST` | `/v1/tasks` | Cria uma nova tarefa. |
-| `GET` | `/v1/tasks/{id}` | Retorna uma tarefa específica pelo seu ID. |
-| `PUT` | `/v1/tasks/{id}` | Atualiza uma tarefa existente. |
-| `DELETE` | `/v1/tasks/{id}` | Exclui uma tarefa. |
+| Method   | Endpoint         | Description                             |
+| :------- | :--------------- | :-------------------------------------- |
+| `GET`    | `/v1/tasks`      | Returns a list of all tasks.            |
+| `POST`   | `/v1/tasks`      | Creates a new task.                     |
+| `GET`    | `/v1/tasks/{id}` | Returns a specific task by its ID.      |
+| `PUT`    | `/v1/tasks/{id}` | Updates an existing task.               |
+| `DELETE` | `/v1/tasks/{id}` | Deletes a task.                         |
 
-### Exemplos de Uso com `curl`
+### Usage Examples with `curl`
 
-**Criar uma tarefa:**
+**Create a task:**
 
 ```bash
 curl --request POST \
   --url http://localhost:8000/v1/tasks \
   --header 'Content-Type: application/json' \
-  --data '{
-    "name": "Minha Primeira Tarefa",
-    "content": "Conteúdo da tarefa de exemplo."
-}'
+  --data 
+    "{
+    "name": "My First Task",
+    "content": "Sample task content."
+}"
 ```
 
-**Listar todas as tarefas:**
+**List all tasks:**
 
 ```bash
 curl http://localhost:8000/v1/tasks
 ```
 
-**Obter uma tarefa por ID:**
+**Get a task by ID:**
 
 ```bash
 curl http://localhost:8000/v1/tasks/1
 ```
 
-**Atualizar uma tarefa:**
+**Update a task:**
 
 ```bash
 curl --request PUT \
   --url http://localhost:8000/v1/tasks/1 \
   --header 'Content-Type: application/json' \
-  --data '{
-    "name": "Tarefa Atualizada",
-    "content": "Esta tarefa foi atualizada.",
+  --data 
+    "{
+    "name": "Updated Task",
+    "content": "This task has been updated.",
     "done": true
-}'
+}"
 ```
 
-**Excluir uma tarefa:**
+**Delete a task:**
 
 ```bash
 curl --request DELETE http://localhost:8000/v1/tasks/1
 ```
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 - [Go](https://golang.org/)
 - [PostgreSQL](https://www.postgresql.org/)
-- [github.com/lib/pq](https://github.com/lib/pq) - Driver do PostgreSQL para Go.
-- [github.com/joho/godotenv](https://github.com/joho/godotenv) - Para carregar variáveis de ambiente de um arquivo `.env`.
+- [github.com/lib/pq](https://github.com/lib/pq) - PostgreSQL driver for Go.
+- [github.com/joho/godotenv](https://github.com/joho/godotenv) - For loading environment variables from a `.env` file.
